@@ -32,12 +32,32 @@ def retrieve(query, top_n=5):
     search_response = client.search(
         index="kibana_sample_data_vectordb_byoe",
         body={
-            "knn": {
-                "field": "content_embedding",
-                "query_vector": query_embedding,
-                "k": top_n,
-                "num_candidates": 50
+            "retriever": {
+                "rrf": {
+                    "retrievers": [
+                        {
+                            "standard": {
+                                "query": {
+                                    "match": {
+                                        "content": query
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "knn": {
+                                "field": "content_embedding",
+                                "query_vector": query_embedding,
+                                "k": top_n,
+                                "num_candidates": 50
+                            }
+                        }
+                    ],            
+                    "rank_window_size": 50, # Candidates from each retriever before RRF fusion
+                    "rank_constant": 20
+                }
             }
         }
     )
+
     return search_response

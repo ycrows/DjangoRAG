@@ -16,18 +16,18 @@ def format_context(search_response):
         source = hit["_source"]
 
         context.append(
-            f"""[Source {i}]
-Title: {source['title']}
+            f"""Title: {source['title']}
 Content: {source['content']}
 Dataset: {source['source']}
 """
+#Score: {hit["_score"]}
         )
 
     return "\n\n".join(context)
 
 def generate_answer(query, context_docs):
     context = format_context(context_docs)
-
+    print(context)
     response = requests.post(
         "https://openrouter.ai/api/v1/chat/completions",
         headers={
@@ -40,7 +40,6 @@ def generate_answer(query, context_docs):
                 {
                     "role": "system", #better not to switch the order even though we explicitly define the role
                     "content": "Answer the user's question based on the provided context. "
-                               "Cite the relevant source numbers in brackets. "
                                "If the context doesn't contain enough information, say so."
                                #"If the context doesn't contain enough information, say so. But still try to answer with general knowledge",
                 },
@@ -60,7 +59,6 @@ def generate_answer(query, context_docs):
 
 def chat_with_bot(query):
     retrieved_docs = retrieve(query)
-
     answer = generate_answer(query, retrieved_docs) 
     print(f"Question: {query}")
     print(f"Answer: {answer}")
