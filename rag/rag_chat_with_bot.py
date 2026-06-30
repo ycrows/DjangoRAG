@@ -1,19 +1,32 @@
 import requests
 import json
-from .rag_retrieval import rag_retrieval
+from .rag_retrieval import retrieve
 
 import os
 from dotenv import load_dotenv
 load_dotenv()
 OPENROUTER_API_KEY = os.environ["OPENROUTER_API_KEY"]
 
+# change the formatting from json format 
+def format_context(search_response):
+    docs = search_response["hits"]["hits"]
+
+    context = []
+    for i, hit in enumerate(docs, start=1):
+        source = hit["_source"]
+
+        context.append(
+            f"""[Source {i}]
+Title: {source['title']}
+Content: {source['content']}
+Dataset: {source['source']}
+"""
+        )
+
+    return "\n\n".join(context)
 
 def generate_answer(query, context_docs):
-    # Build a context string from the reranked documents
-    context = "\n\n".join(
-        f"[{i+1}] {doc['document']['text']}" #example: [1] RAG stands for Retrieval-Augmented Generation.
-        for i, doc in enumerate(context_docs) 
-    ) # what happens is that context will be a list of formatted string like in the example above
+    context = format_context(context_docs)
 
     response = requests.post(
         "https://openrouter.ai/api/v1/chat/completions",
@@ -46,9 +59,9 @@ def generate_answer(query, context_docs):
 
 
 def chat_with_bot(query):
-    retrieved_docs = rag_retrieval(query)
+    retrieved_docs = retrieve(query)
 
-    answer = generate_answer(query, retrieved_docs) #answer = generate_answer(query, reranked)
+    answer = generate_answer(query, retrieved_docs) 
     print(f"Question: {query}")
     print(f"Answer: {answer}")
 
