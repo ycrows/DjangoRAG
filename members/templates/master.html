@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<!-- This header will be displayed in all pages that extend this -->
+<header>
+    <h1>Tuff Header about Tennis</h1>
+    <hr>
+</header>
+
+<!-- Ordering of the template matters, so this will always display after the header is rendered -->
+<!-- Whatever in the content block is supposed to be overriden  -->
+{% block content %}
+{% endblock %}
+
+<footer>
+    <f1>Tuff Tuff Tuff</f1>
+    <p><a href="/">This goes to HOME</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+[
+    {
+        "_index": "kibana_sample_data_vectordb_byoe",
+        "_source": {    
+            "title": "Yellowstone National Park", 
+            "content": "Yellowstone National Park is one of the largest national parks in the United States. It ranges from Wyoming to Montana and Idaho, and contains an area of 2,219,791 acres. It's most famous for hosting the geyser Old Faithful and is centered on the Yellowstone Caldera, the largest super volcano on the American continent. Yellowstone is host to hundreds of species of animal, many of which are endangered or threatened.", 
+            "content_embedding": "",
+            "source": "national-parks"
+        }
+    },
+    { 
+        "_index": "kibana_sample_data_vectordb_byoe",
+        "_source": {
+            "title": "Yosemite National Park", 
+            "content": "Yosemite National Park covers over 750,000 acres of land in California. The park is best known for its granite cliffs, waterfalls and giant sequoia trees. Its most famous cliff, El Capitan, rises about 3,000 feet from Yosemite Valley. It is home to a diverse range of wildlife, including mule deer, black bears, and the endangered Sierra Nevada bighorn sheep. The park has 1,200 square miles of wilderness and is a popular destination for rock climbers.", 
+            "content_embedding": "",
+            "source": "national-parks"
+        }
+    },
+    {
+        "_index": "kibana_sample_data_vectordb_byoe",
+        "_source": {
+            "title": "Rocky Mountain National Park", 
+            "content": "Rocky Mountain National Park receives over 4.5 million visitors annually and is known for its mountainous terrain, including Longs Peak. The park is home to elk, mule deer, moose, and bighorn sheep. It contains montane, subalpine, and alpine tundra ecosystems and is a popular destination for hiking, camping, and wildlife viewing.", 
+            "content_embedding": "",
+            "source": "national-parks"
+        }
+    },
+    { 
+        "_index": "kibana_sample_data_vectordb_byoe",
+        "_source": {
+            "title": "Grand Canyon National Park", 
+            "content": "The Grand Canyon is a steep-sided canyon carved by the Colorado River in Arizona. It is 277 miles long, up to 18 miles wide and attains a depth of over a mile. The park receives nearly six million visitors per year and offers hiking, rafting, and helicopter tours. It is one of the Seven Natural Wonders of the World.", 
+            "content_embedding": "",
+            "source": "national-parks"
+        }
+    },
+    { 
+        "_index": "kibana_sample_data_vectordb_byoe",
+        "_source": {
+            "title": "Zion National Park", 
+            "content": "Zion National Park is located in southwestern Utah and is known for its steep red cliffs and narrow canyons. The Virgin River runs through the main canyon. The park is famous for the Angels Landing and Narrows hikes, and receives over four million visitors annually. Wildlife includes mule deer, mountain lions, and California condors.", 
+            "content_embedding": "",
+            "source": "national-parks"
+        }
+    }, 
+    { 
+        "_index": "kibana_sample_data_vectordb_byoe",
+        "_source": {
+            "title": "Harriman State Park", 
+            "content": "Harriman State Park is one of the largest state parks in New York, covering approximately 47,000 acres in the Hudson Valley region. The park features over 200 miles of hiking trails, 31 lakes and reservoirs, and stunning views of the surrounding landscape. It is home to white-tailed deer, black bears, wild turkeys, and a variety of bird species. Popular activities include hiking, fishing, swimming, and cross-country skiing in winter. The park also contains several historic sites, including old iron mines and the remains of early 20th century villages.", 
+            "content_embedding": "",
+            "source": "state-park"
+        }
+    }
+]

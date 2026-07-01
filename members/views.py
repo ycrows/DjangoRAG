@@ -25,14 +25,10 @@ def details(request, id):
   }
   return HttpResponse(template.render(context, request))
 
-# this runs when there's no subpage
-def home(request): 
-  mymembers = Member.objects.all().values()
-  template = loader.get_template('myfirst.html')
-  context = {
-    'mymembers': mymembers,
-  }
-  return HttpResponse(template.render(context, request))
+def myfirst(request): 
+  #template = loader.get_template('myfirst.html')
+  #return HttpResponse(template.render({}, request))
+  return render(request, 'myfirst.html')
 
 @csrf_exempt
 def chat(request):
@@ -41,3 +37,16 @@ def chat(request):
         response = chat_with_bot(user_message)
         return JsonResponse({'message': response})
     return render(request, 'chat.html')
+
+def main(request):
+   template = loader.get_template('main.html')
+   return HttpResponse(template.render())
+
+def testing(request):
+  template = loader.get_template('template.html')
+  context = {
+    'fruits': ['Apple', 'Banana', 'Cherry'],
+  }
+  return HttpResponse(template.render(context, request))
+
+
