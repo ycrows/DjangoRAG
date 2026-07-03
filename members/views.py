@@ -2,11 +2,18 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Member
 
-#tut
+#w3s tut
 from rag.rag_chat_with_bot import chat_with_bot
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+
+#auth tutorial (realpython.com)
+from django.contrib.auth import login
+#from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect
+from django.urls import reverse
+from .forms import CustomUserCreationForm
 
 
 def members(request):
@@ -44,9 +51,25 @@ def main(request):
 
 def testing(request):
   template = loader.get_template('template.html')
+  mymembers = Member.objects.all().values()
   context = {
     'fruits': ['Apple', 'Banana', 'Cherry'],
+    'firstname': 'Linus',
+    'mymembers' : mymembers,
+    'greeting': 10,
   }
   return HttpResponse(template.render(context, request))
 
+def dashboard(request):
+    return render(request, "users/dashboard.html")
 
+def sign_up(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(reverse("dashboard"))
+    else:
+        form = CustomUserCreationForm()
+    return render(request, "registration/sign_up.html", {"form": form})

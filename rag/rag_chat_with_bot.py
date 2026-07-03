@@ -19,6 +19,7 @@ def format_context(search_response):
             f"""Title: {source['title']}
 Content: {source['content']}
 Dataset: {source['source']}
+Score: {hit["_score"]}
 """
 #Score: {hit["_score"]}
         )

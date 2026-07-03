@@ -8,5 +8,32 @@
 
 <p>In views.py you can see what the fruits variable looks like.</p>
 
+<!-- Send variable from context -->
+<p>Hello, {{ firstname }}!</p>
+
+<!-- Creating the variable inside the HTML -->
+{% with firstname="Tobias" %}
+<h1>Hello {{ firstname }}, how are you?</h1>
+{% endwith %}
+
+<!-- Django Tags: There's a bunch of tags, you can check in the w3s page -->
+<h2>
+  {% for x in mymembers %}
+    <li>{{ x.firstname }}</li>
+  {% endfor %}
+</h2>
+
+{% if greeting == 1 %}
+  <h1>Hello</h1>
+{% elif greeting == 2%}
+  <h1>Hello but 2</h1>
+{% elif greeting > 2 and greeting != 0 %} <!-- Keep calculation outside of tags, Django tags intentionally only keeps a limited amount of tags -->
+  <h1>Hello but 3</h1>
+{% else %}
+  <h1>Bye</h1>
+{% endif %}
+
+
+
 </body>
 </html>
