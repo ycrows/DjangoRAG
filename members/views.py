@@ -15,7 +15,6 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from .forms import CustomUserCreationForm
 
-
 def members(request):
   mymembers = Member.objects.all().values()
   template = loader.get_template('all_members.html')

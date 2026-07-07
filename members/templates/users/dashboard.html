@@ -4,7 +4,7 @@
     <hr />
     {% if user.is_authenticated %}
         {% include "registration/_logout.html" %}
-        <a href="{% url 'password_change' %}">Change password</a>s
+        <a href="{% url 'password_change' %}">Change password</a>
     {% else %}
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'sign_up' %}">Sign up</a>
