@@ -42,6 +42,8 @@ def generate_answer(query, context_docs):
                     "role": "system", #better not to switch the order even though we explicitly define the role
                     "content": "Answer the user's question based on the provided context. "
                                "If the context doesn't contain enough information, say so."
+                               "Answer naturally, do not explicitly say that you infer material from a context."
+                               "Do not offer to answer further questions."
                                #"If the context doesn't contain enough information, say so. But still try to answer with general knowledge",
                 },
                 {

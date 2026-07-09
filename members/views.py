@@ -15,6 +15,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from .forms import CustomUserCreationForm
 
+from rag.anonymizer import anonymizer
+
 def members(request):
   mymembers = Member.objects.all().values()
   template = loader.get_template('all_members.html')
@@ -40,7 +42,8 @@ def myfirst(request):
 def chat(request):
     if request.method == 'POST':
         user_message = request.POST.get('message', '')
-        response = chat_with_bot(user_message)
+        hidden_message = anonymizer(user_message)
+        response = chat_with_bot(hidden_message)
         return JsonResponse({'message': response})
     return render(request, 'chat.html')
 
