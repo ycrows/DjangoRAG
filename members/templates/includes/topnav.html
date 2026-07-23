@@ -1,0 +1,17 @@
+<div class="topnav">
+    <a href="javascript:void(0)" onclick="menuClicked()">☰ Menu</a>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+
+    <a href="#about" class="split">Help</a>
+
+    
+        {% if user.is_authenticated %}
+            {% include "registration/_logout.html" %}
+            <a href="{% url 'password_change' %}" class ="split">Change password</a>
+        {% else %}
+            <a href="{% url 'login' %}" class ="split">Login</a>
+            <a href="{% url 'sign_up' %}" class ="split">Sign up</a>
+        {% endif %}
+</div>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if user.is_authenticated %}
+
+        <h1 style="text-align: center">Openrouter Demo</h1>
+        <div id="chat-box">
+            <div id="chat-messages"></div>
+        </div>
+
+
+        <!-- ✅ Message Input Form -->
+        <div id="message-form">
+            <div class="d-flex align-items-center gap-2 mb-2">
+                
+                <div class="message-wrapper flex-grow-1">
+                    <textarea id="message" rows="1" placeholder="Send a message"></textarea>
+                    <button class="send-button" onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
+                </div>
+                
+                <a href="{% url 'chat_settings' %}" 
+                data-bs-toggle="tooltip" 
+                data-bs-placement="bottom" 
+                class="btn-shadow btn btn-dark cog-setting-btn" 
+                data-bs-original-title="Example Tooltip">
+                    <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
+                </a>
+
+            </div>
+
+            <div class="disclaimer">
+                This is a ChatGPT UI Clone for personal use and educational purposes only.
+            </div>
+        </div>
+
+
+
+    {% else %}
+        <h1>Please log in to chat with our bot</h1>
+        <a href="{% url 'dashboard' %}">Back to dashboard</a>
+    {% endif %}
+{% endblock content %}

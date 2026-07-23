@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
+    <h1>Welcome!</h1>
     Hello, {{ user.username|default:"Guest" }}!
     <hr />
     {% if user.is_authenticated %}
-        {% include "registration/_logout.html" %}
-        <a href="{% url 'password_change' %}">Change password</a>
+        <!-- Default link styling -->
         <a href="{% url 'chat'%}">Chat with our bot!</a>
+
+        <!-- Button styling because of class -->
+        <div class="mb-3 card card-body"><h5 class="card-title">Chat with Our Bot!</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ex magna, pretium nec rhoncus at, laoreet vitae enim. Mauris ante ex, suscipit ullamcorper mollis sit amet, auctor a lectus. Suspendisse sodales ligula enim, in commodo eros elementum quis. Donec a nulla consectetur neque ultricies porttitor. Donec venenatis facilisis mi in imperdiet. Morbi semper neque at gravida varius. Mauris viverra, nibh sed pulvinar porttitor, ligula est posuere eros, vel accumsan ligula purus at dolor. Suspendisse potenti. Duis felis diam, scelerisque non mi at, ullamcorper laoreet lectus. Etiam vitae nibh vitae odio luctus consequat eu id lacus. Sed tristique congue tellus et sollicitudin. Sed placerat rutrum lacus, vitae faucibus libero blandit sed. In porttitor porta dapibus.</p>
+            <a href="{% url 'chat' %}" class="btn btn-primary">
+                Go to Chat
+            </a>
+        </div>
+
     {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'sign_up' %}">Sign up</a>
+        <p>Please login to access the website!</p>
+  
     {% endif %}
 {% endblock content %}

@@ -8,7 +8,7 @@ load_dotenv()
 OPENROUTER_API_KEY = os.environ["OPENROUTER_API_KEY"]
 
 client = Elasticsearch(
-    "https://my-elasticsearch-project-f38748.es.us-central1.gcp.elastic.cloud:443",
+    os.environ["ELASTIC_CLIENT"],
     api_key=os.environ["ELASTIC_API_KEY"],
 )
 
