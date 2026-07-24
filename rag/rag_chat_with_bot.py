@@ -26,17 +26,18 @@ Score: {hit["_score"]}
 
     return "\n\n".join(context)
 
-def generate_answer(query, context_docs):
+def generate_answer(query, context_docs, PRESET_SLUG):
     context = format_context(context_docs)
     print(context)
     response = requests.post(
         "https://openrouter.ai/api/v1/chat/completions",
+
         headers={
             "Authorization": f"Bearer {OPENROUTER_API_KEY}",
             "Content-Type": "application/json",
         },
         json={
-            "model": "~openai/gpt-mini-latest",
+            "model": f"@preset/{PRESET_SLUG}",
             "messages": [
                 {
                     "role": "system", #better not to switch the order even though we explicitly define the role
@@ -51,18 +52,19 @@ def generate_answer(query, context_docs):
                     "content": f"Context:\n{context}\n\nQuestion: {query}",
                 },
             ],
-            "max_tokens": 300,
+            "max_tokens": 300, # Don't use too much tokens 
 
         },
     )
-    print(response.json()["usage"]) # how many tokens we using 
+    #print(response.json())
+    #print(response.json()["usage"]) # how many tokens we using 
     return response.json()["choices"][0]["message"]["content"]
 
 
 
-def chat_with_bot(query):
+def chat_with_bot(query, PRESET_SLUG):
     retrieved_docs = retrieve(query)
-    answer = generate_answer(query, retrieved_docs) 
+    answer = generate_answer(query, retrieved_docs, PRESET_SLUG) 
     print(f"Question: {query}")
     print(f"Answer: {answer}")
 

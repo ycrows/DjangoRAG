@@ -2,11 +2,24 @@
 {% block content %}
     {% if user.is_authenticated %}
 
-        <h1 style="text-align: center">Openrouter Demo</h1>
+        <div class="mb-2 me-2 btn-group" id="preset-selector">
+            <button class="btn btn-light" id="preset-dropdown-btn">No Preset Selected</button>
+            <button type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle-split dropdown-toggle btn btn-light"><span class="visually-hidden">Toggle Dropdown</span></button>
+            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                {% for name, slug in presets.items %}
+                    <button type="button" tabindex="0" class="dropdown-item" data-preset="{{ slug }}">{{ name }}</button>
+                {% empty %}
+                    <h6 tabindex="-1" class="dropdown-header">No presets available!</h6>
+                {% endfor %}
+            </div>
+        </div>
+
+
         <div id="chat-box">
             <div id="chat-messages"></div>
         </div>
 
+        
 
         <!-- ✅ Message Input Form -->
         <div id="message-form">
@@ -17,7 +30,7 @@
                     <button class="send-button" onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
                 </div>
                 
-                <a href="{% url 'chat_settings' %}" 
+                <a href="{% url 'preset' %}" 
                 data-bs-toggle="tooltip" 
                 data-bs-placement="bottom" 
                 class="btn-shadow btn btn-dark cog-setting-btn" 

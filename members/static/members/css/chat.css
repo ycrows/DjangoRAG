@@ -455,3 +455,16 @@ p {
     align-items: center !important;
     justify-content: center !important;
 }
+
+#preset-selector {
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 1rem !important;
+    padding: 0px 600px 0px 600px !important;   /* Clears out the 'padding: 13px' that is bloating the button */
+}
+
+#preset-dropdown-btn {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    min-width: 250px;
+}

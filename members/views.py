@@ -17,6 +17,7 @@ from .forms import CustomUserCreationForm
 
 from rag.anonymizer import anonymizer
 from rag.rag_create_preset import rag_create_preset
+from rag.rag_get_preset import rag_get_preset
 
 def members(request):
   mymembers = Member.objects.all().values()
@@ -41,12 +42,15 @@ def myfirst(request):
 
 @csrf_exempt
 def chat(request):
+    presets = rag_get_preset()
+    
     if request.method == 'POST':
         user_message = request.POST.get('message', '')
+        user_preset = request.POST.get('preset', '')
         hidden_message = anonymizer(user_message)
-        response = chat_with_bot(hidden_message)
+        response = chat_with_bot(hidden_message, user_preset)
         return JsonResponse({'message': response})
-    return render(request, 'chat/chat.html')
+    return render(request, 'chat/chat.html', {"presets": presets})
 
 def base(request):
    template = loader.get_template('base.html')
